@@ -1,0 +1,6 @@
+{
+    "name": "wazidshah/text-over-image",
+    "require": {
+        "nmcteam/image-with-text": "~2.0"
+    }
+}
