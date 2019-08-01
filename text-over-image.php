@@ -194,38 +194,108 @@ function handle_form($id)
 	$line_two = $_POST['line-two'];
 	$line_three = $_POST['line-three'];
 
-	// Add styled text to image
-	$text1 = new \NMC\ImageWithText\Text($line_one, 1, 1280);
-	$text1->align = 'left';
-	$text1->color = 'FFFFFF';
-	$text1->font = $font_path;
-	$text1->lineHeight = 87.5;
-	$text1->size = 65;
-	$text1->startX = 40;
-	$text1->startY = (630/2) - 65 - (87.5);
-	$image->addText($text1);
+	if($line_one!="" &&  $line_two == "" && $line_three=="")
+	{
+		// Add styled text to image
+		$text1 = new \NMC\ImageWithText\Text($line_one, 1, 1280);
+		$text1->align = 'left';
+		$text1->color = 'FFFFFF';
+		$text1->font = $font_path;
+		$text1->lineHeight = 87.5;
+		$text1->size = 65;
+		$text1->startX = 40;
+		$text1->startY = (630/2) - (65);
+		$image->addText($text1);
+	}
+	elseif($line_one!="" &&  $line_two != "" && $line_three =="")
+    {
+		// Add styled text to image
+		$text1 = new \NMC\ImageWithText\Text($line_one, 1, 1280);
+		$text1->align = 'left';
+		$text1->color = 'FFFFFF';
+		$text1->font = $font_path;
+		$text1->lineHeight = 87.5;
+		$text1->size = 65;
+		$text1->startX = 40;
+		$text1->startY = (630/2) - 65 - (87.5/2);
+		$image->addText($text1);
 
-	// Add another styled text to image
-	$text2 = new \NMC\ImageWithText\Text($line_two, 1, 1280);
-	$text2->align = 'left';
-	$text2->color = '7b00ff';
-	$text2->font = $font_path;
-	$text2->lineHeight = 87.5;
-	$text2->size = 65;
-	$text2->startX = 40;
-	$text2->startY = (630/2) - 65;
-	$image->addText($text2);
+		// Add another styled text to image
+		$text2 = new \NMC\ImageWithText\Text($line_two, 1, 1280);
+		$text2->align = 'left';
+		$text2->color = '7b00ff';
+		$text2->font = $font_path;
+		$text2->lineHeight = 87.5;
+		$text2->size = 65;
+		$text2->startX = 40;
+		$text2->startY = (630/2) - 65 + (87.5/2);
+		$image->addText($text2);
+	}
+	elseif($line_one!="" &&  $line_two != "" && $line_three!="")
+    {
+		$text1 = new \NMC\ImageWithText\Text($line_one, 1, 1280);
+		$text1->align = 'left';
+		$text1->color = 'FFFFFF';
+		$text1->font = $font_path;
+		$text1->lineHeight = 87.5;
+		$text1->size = 65;
+		$text1->startX = 40;
+		$text1->startY = (630/2) - 65 - (87.5);
+		$image->addText($text1);
 
-	$text2 = new \NMC\ImageWithText\Text($line_three, 1, 1280);
-	$text2->align = 'left';
-	$text2->color = 'FFFFFF';
-	$text2->font = $font_path;
-	$text2->lineHeight = 87.5;
-	$text2->size = 65;
-	$text2->startX = 40;
-	$text2->startY = (630/2) - 65 + 87.5;
-	$image->addText($text2);
-	// Render image
+		// Add another styled text to image
+		$text2 = new \NMC\ImageWithText\Text($line_two, 1, 1280);
+		$text2->align = 'left';
+		$text2->color = '7b00ff';
+		$text2->font = $font_path;
+		$text2->lineHeight = 87.5;
+		$text2->size = 65;
+		$text2->startX = 40;
+		$text2->startY = (630/2) - 65;
+		$image->addText($text2);
+
+		$text2 = new \NMC\ImageWithText\Text($line_three, 1, 1280);
+		$text2->align = 'left';
+		$text2->color = 'FFFFFF';
+		$text2->font = $font_path;
+		$text2->lineHeight = 87.5;
+		$text2->size = 65;
+		$text2->startX = 40;
+		$text2->startY = (630/2) - 65 + 87.5;
+		$image->addText($text2);	
+	}
+	// // Add styled text to image
+	// $text1 = new \NMC\ImageWithText\Text($line_one, 1, 1280);
+	// $text1->align = 'left';
+	// $text1->color = 'FFFFFF';
+	// $text1->font = $font_path;
+	// $text1->lineHeight = 87.5;
+	// $text1->size = 65;
+	// $text1->startX = 40;
+	// $text1->startY = (630/2) - 65 - (87.5);
+	// $image->addText($text1);
+
+	// // Add another styled text to image
+	// $text2 = new \NMC\ImageWithText\Text($line_two, 1, 1280);
+	// $text2->align = 'left';
+	// $text2->color = '7b00ff';
+	// $text2->font = $font_path;
+	// $text2->lineHeight = 87.5;
+	// $text2->size = 65;
+	// $text2->startX = 40;
+	// $text2->startY = (630/2) - 65;
+	// $image->addText($text2);
+
+	// $text2 = new \NMC\ImageWithText\Text($line_three, 1, 1280);
+	// $text2->align = 'left';
+	// $text2->color = 'FFFFFF';
+	// $text2->font = $font_path;
+	// $text2->lineHeight = 87.5;
+	// $text2->size = 65;
+	// $text2->startX = 40;
+	// $text2->startY = (630/2) - 65 + 87.5;
+	// $image->addText($text2);
+	// // Render image
 	$image->render(ABSPATH.'wp-content/plugins/text-over-image/admin/img/share_edited_'.$id.'.jpg');
 
 	// Upload to medial library
