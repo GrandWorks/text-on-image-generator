@@ -185,7 +185,11 @@ function handle_form($id)
 	require 'vendor/autoload.php';
 	// Create image
 	$image = new \NMC\ImageWithText\Image(ABSPATH .'wp-content/plugins/text-over-image/admin/img/share.jpg');
-	$font_path = ABSPATH .'wp-content/plugins/text_over_image/admin/fonts/SourceSansPro-Bold.ttf';
+	// $font_path = ABSPATH .'wp-content/plugins/text_over_image/admin/fonts/SourceSansPro-Bold.ttf';
+	// print_r(plugins_url('admin/fonts/SourceSansPro-Bold.ttf',dirname(__FILE__)));
+	// print_r(ABSPATH .'wp-content/plugins/text_over_image/admin/fonts/SourceSansPro-Bold.ttf');
+	// die();
+	$font_path = dirname(__FILE__).'/admin/fonts/SourceSansPro-Bold.ttf';
 	$font_size = 65;
 	$line_height = 87.5;
 	$satrt_x = 40;
@@ -296,10 +300,9 @@ function handle_form($id)
 	// $text2->startY = (630/2) - 65 + 87.5;
 	// $image->addText($text2);
 	// // Render image
-	$image->render(ABSPATH.'wp-content/plugins/text-over-image/admin/img/share_edited_'.$id.'.jpg');
-
+	$image->render(dirname(__FILE__).'/public/img/share_edited_'.$id.'.jpg');
 	// Upload to medial library
-    $file = ABSPATH.'wp-content/plugins/text-over-image/admin/img/share_edited_'.$id.'.jpg';
+    $file = dirname(__FILE__).'/public/img/share_edited_'.$id.'.jpg';
     $filename = basename($file);
     $processed_file_name = preg_replace('/\.[^.]+$/', '', $filename);
     $upload_file = wp_upload_bits($filename, null, file_get_contents($file));
