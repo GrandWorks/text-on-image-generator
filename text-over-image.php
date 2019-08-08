@@ -105,9 +105,12 @@ function wpt_add_event_metaboxes() {
 function wpt_events_location(){
     global $post;
     wp_nonce_field( "textoverimage", "toi_form" );
-    $line_one = get_post_meta( $post->ID, 'line-one', true );
-    $line_two = get_post_meta( $post->ID, 'line-two', true );
-    $line_three = get_post_meta( $post->ID, 'line-three', true );
+	$line_one = get_post_meta( $post->ID, 'line-one', true );
+	$line_one_color = get_post_meta( $post->ID, 'line-one-color', true ) ? get_post_meta( $post->ID, 'line-one-color', true ) :"#7b00ff"; ;
+	$line_two = get_post_meta( $post->ID, 'line-two', true );
+	$line_two_color = get_post_meta( $post->ID, 'line-two-color', true ) ? get_post_meta( $post->ID, 'line-two-color', true ) :"#7b00ff";
+	$line_three = get_post_meta( $post->ID, 'line-three', true );
+	$line_three_color = get_post_meta( $post->ID, 'line-three-color', true ) ? get_post_meta( $post->ID, 'line-three-color', true ) :"#7b00ff";
     $file_path = get_post_meta( $post->ID, 'file-path', true );
 	echo '
     <h1>Text over image</h1>
@@ -116,15 +119,24 @@ function wpt_events_location(){
     <table class="form-table">
         <tr>
             <th scope="row"><label for="line-one">Line One</label></th>
-            <td><input type="text" name="line-one" class="regular-text" value="'.$line_one.'"></td>
+			<td>
+				<input type="text" name="line-one" class="regular-text" value="'.$line_one.'">
+				<input type="color" name="line-one-color" value="'.$line_one_color.'">
+			</td>
         </tr>
         <tr>
             <th scope="row"><label for="line-two">Line Two</label></th>
-            <td><input type="text" name="line-two" class="regular-text" value= "'.$line_two.'"></td>
+			<td>
+				<input type="text" name="line-two" class="regular-text" value= "'.$line_two.'">
+				<input type="color" name="line-two-color" value="'.$line_two_color.'">
+			</td>
         </tr>
         <tr>
             <th scope="row"><label for="line-three">Line Three</label></th>
-            <td><input type="text" name="line-three" class="regular-text" value="'.$line_three.'"></td>
+			<td>
+				<input type="text" name="line-three" class="regular-text" value="'.$line_three.'">
+				<input type="color" name="line-three-color" value="'.$line_three_color.'">
+			</td>
         </tr>
         <tr>
             <th scope="row"><label for="file-path">File Path</label></th>
@@ -151,9 +163,12 @@ function wpt_save_events_meta( $post_id, $post ) {
 	}
 	// Now that we're authenticated, time to save the data.
 	// This sanitizes the data from the field and saves it into an array $events_meta.
-    $events_meta['line-one'] = esc_textarea( $_POST['line-one'] );
-    $events_meta['line-two'] = esc_textarea( $_POST['line-two'] );
-    $events_meta['line-three'] = esc_textarea( $_POST['line-three'] );
+	$events_meta['line-one'] = esc_textarea( $_POST['line-one'] );
+	$events_meta['line-one-color'] = esc_textarea( $_POST['line-one-color'] );
+	$events_meta['line-two'] = esc_textarea( $_POST['line-two'] );
+	$events_meta['line-two-color'] = esc_textarea( $_POST['line-two-color'] );
+	$events_meta['line-three'] = esc_textarea( $_POST['line-three'] );
+	$events_meta['line-three-color'] = esc_textarea( $_POST['line-three-color'] );
 
     $file_path = handle_form($post_id);
 
@@ -195,15 +210,18 @@ function handle_form($id)
 	$satrt_x = 40;
 
 	$line_one = $_POST['line-one'];
+	$line_one_color = $_POST['line-one-color'];
 	$line_two = $_POST['line-two'];
+	$line_two_color = $_POST['line-two-color'];
 	$line_three = $_POST['line-three'];
+	$line_three_color = $_POST['line-three-color'];
 
 	if($line_one!="" &&  $line_two == "" && $line_three=="")
 	{
 		// Add styled text to image
 		$text1 = new \NMC\ImageWithText\Text($line_one, 1, 1280);
 		$text1->align = 'left';
-		$text1->color = 'FFFFFF';
+		$text1->color = $line_one_color;
 		$text1->font = $font_path;
 		$text1->lineHeight = 87.5;
 		$text1->size = 65;
@@ -216,7 +234,7 @@ function handle_form($id)
 		// Add styled text to image
 		$text1 = new \NMC\ImageWithText\Text($line_one, 1, 1280);
 		$text1->align = 'left';
-		$text1->color = 'FFFFFF';
+		$text1->color = $line_one_color;
 		$text1->font = $font_path;
 		$text1->lineHeight = 87.5;
 		$text1->size = 65;
@@ -227,7 +245,7 @@ function handle_form($id)
 		// Add another styled text to image
 		$text2 = new \NMC\ImageWithText\Text($line_two, 1, 1280);
 		$text2->align = 'left';
-		$text2->color = '7b00ff';
+		$text2->color = $line_two_color;
 		$text2->font = $font_path;
 		$text2->lineHeight = 87.5;
 		$text2->size = 65;
@@ -239,7 +257,7 @@ function handle_form($id)
     {
 		$text1 = new \NMC\ImageWithText\Text($line_one, 1, 1280);
 		$text1->align = 'left';
-		$text1->color = 'FFFFFF';
+		$text1->color = $line_one_color;
 		$text1->font = $font_path;
 		$text1->lineHeight = 87.5;
 		$text1->size = 65;
@@ -250,7 +268,7 @@ function handle_form($id)
 		// Add another styled text to image
 		$text2 = new \NMC\ImageWithText\Text($line_two, 1, 1280);
 		$text2->align = 'left';
-		$text2->color = '7b00ff';
+		$text2->color = $line_two_color;
 		$text2->font = $font_path;
 		$text2->lineHeight = 87.5;
 		$text2->size = 65;
@@ -260,7 +278,7 @@ function handle_form($id)
 
 		$text2 = new \NMC\ImageWithText\Text($line_three, 1, 1280);
 		$text2->align = 'left';
-		$text2->color = 'FFFFFF';
+		$text2->color = $line_three_color;
 		$text2->font = $font_path;
 		$text2->lineHeight = 87.5;
 		$text2->size = 65;
