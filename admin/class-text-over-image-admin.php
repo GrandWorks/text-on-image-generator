@@ -75,6 +75,8 @@ class Text_Over_Image_Admin {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/text-over-image-admin.css', array(), $this->version, 'all' );
 
+		wp_enqueue_style( $this->plugin_name ."_spectrum", plugin_dir_url( __FILE__ ) . 'css/spectrum.css', array(), $this->version, 'all' );
+
 	}
 
 	/**
@@ -96,7 +98,9 @@ class Text_Over_Image_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/text-over-image-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/text-over-image-admin.js', array( 'jquery',$this->plugin_name .'_spectrum' ), $this->version, false );
+
+		wp_enqueue_script( $this->plugin_name ."_spectrum", plugin_dir_url( __FILE__ ) . 'js/spectrum.js', array( 'jquery' ), $this->version, false );
 
 	}
 

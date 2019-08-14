@@ -27,6 +27,27 @@
 	 * single DOM-ready or window-load handler for a particular page.
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
+	 * 
 	 */
+	$(document).ready(function(){
+
+		$("#line-one-color").spectrum({
+			color: $(this).val(),
+			showPalette: true,
+			palette: [["#ffffff","#7b00ff"]]
+		});
+
+		$("#line-two-color").spectrum({
+			color: $(this).val(),
+			showPalette: true,
+			palette: [["#ffffff","#7b00ff"]]
+		});
+
+		$("#line-three-color").spectrum({
+			color: $(this).val(),
+			showPalette: true,
+			palette: [["#ffffff","#7b00ff"]]
+		});
+	});
 
 })( jQuery );

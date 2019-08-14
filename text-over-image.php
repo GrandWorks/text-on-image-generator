@@ -106,11 +106,11 @@ function wpt_events_location(){
     global $post;
     wp_nonce_field( "textoverimage", "toi_form" );
 	$line_one = get_post_meta( $post->ID, 'line-one', true );
-	$line_one_color = get_post_meta( $post->ID, 'line-one-color', true ) ? get_post_meta( $post->ID, 'line-one-color', true ) :"#7b00ff"; ;
+	$line_one_color = get_post_meta( $post->ID, 'line-one-color', true ) ? get_post_meta( $post->ID, 'line-one-color', true ) :"#ffffff"; ;
 	$line_two = get_post_meta( $post->ID, 'line-two', true );
 	$line_two_color = get_post_meta( $post->ID, 'line-two-color', true ) ? get_post_meta( $post->ID, 'line-two-color', true ) :"#7b00ff";
 	$line_three = get_post_meta( $post->ID, 'line-three', true );
-	$line_three_color = get_post_meta( $post->ID, 'line-three-color', true ) ? get_post_meta( $post->ID, 'line-three-color', true ) :"#7b00ff";
+	$line_three_color = get_post_meta( $post->ID, 'line-three-color', true ) ? get_post_meta( $post->ID, 'line-three-color', true ) :"#ffffff";
     $file_path = get_post_meta( $post->ID, 'file-path', true );
 	echo '
     <h1>Text over image</h1>
@@ -121,21 +121,21 @@ function wpt_events_location(){
             <th scope="row"><label for="line-one">Line One</label></th>
 			<td>
 				<input type="text" name="line-one" class="regular-text" value="'.$line_one.'">
-				<input type="color" name="line-one-color" value="'.$line_one_color.'">
+				<input type="text" id="line-one-color" name="line-one-color" value="'.$line_one_color.'">
 			</td>
         </tr>
         <tr>
             <th scope="row"><label for="line-two">Line Two</label></th>
 			<td>
 				<input type="text" name="line-two" class="regular-text" value= "'.$line_two.'">
-				<input type="color" name="line-two-color" value="'.$line_two_color.'">
+				<input type="text" id="line-two-color" name="line-two-color" value="'.$line_two_color.'">
 			</td>
         </tr>
         <tr>
             <th scope="row"><label for="line-three">Line Three</label></th>
 			<td>
 				<input type="text" name="line-three" class="regular-text" value="'.$line_three.'">
-				<input type="color" name="line-three-color" value="'.$line_three_color.'">
+				<input type="text" id="line-three-color" name="line-three-color" value="'.$line_three_color.'">
 			</td>
         </tr>
         <tr>
@@ -215,6 +215,8 @@ function handle_form($id)
 	$line_two_color = $_POST['line-two-color'];
 	$line_three = $_POST['line-three'];
 	$line_three_color = $_POST['line-three-color'];
+
+	if($line_one=="" && $line_two=="" && $line_three==""){return;}
 
 	if($line_one!="" &&  $line_two == "" && $line_three=="")
 	{
@@ -361,6 +363,20 @@ function handle_form($id)
         }
     }
 }
+
+// Add og:image in header if required
+function filter_wpseo_opengraph_image( $img ) { 
+	global $post;
+	$image_link = get_post_meta( $post->ID, 'file-path', true );
+	if(!empty($image_link))
+	{
+		echo '<meta property="og:image" content="'.$image_link.'">' . "\n";
+	}
+	
+}; 
+         
+// add the filter 
+add_action( 'wp_head', 'filter_wpseo_opengraph_image', 10, 1 ); 
 
 
 function run_text_over_image() {
