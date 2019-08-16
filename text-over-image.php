@@ -358,10 +358,12 @@ function handle_form($id)
         if (!is_wp_error($attachment_id)) {
             require_once(ABSPATH . "wp-admin" . '/includes/image.php');
             $attachment_data = wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
-            wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+			wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+			wp_delete_file( $file );
             return wp_get_attachment_url($attachment_id);
         }
-    }
+	}
+	
 }
 
 // Add og:image in header if required
