@@ -34,18 +34,21 @@
 		$("#line-one-color").spectrum({
 			color: $(this).val(),
 			showPalette: true,
+			showPaletteOnly: true,
 			palette: [["#ffffff","#7b00ff"]]
 		});
 
 		$("#line-two-color").spectrum({
 			color: $(this).val(),
 			showPalette: true,
+			showPaletteOnly: true,
 			palette: [["#ffffff","#7b00ff"]]
 		});
 
 		$("#line-three-color").spectrum({
 			color: $(this).val(),
 			showPalette: true,
+			showPaletteOnly: true,
 			palette: [["#ffffff","#7b00ff"]]
 		});
 	});
