@@ -113,7 +113,9 @@ function wpt_events_location(){
 	$line_three_color = get_post_meta( $post->ID, 'line-three-color', true ) ? get_post_meta( $post->ID, 'line-three-color', true ) :"#ffffff";
     $file_path = get_post_meta( $post->ID, 'file-path', true );
 	echo '
-    <h1>Text over image</h1>
+	<h1>Text over image</h1>
+	<p>Publish/Update post to see the preview and image path</p>			
+	
     <input type="hidden" name="updated" value="true" />
 
     <table class="form-table">
@@ -141,10 +143,13 @@ function wpt_events_location(){
         <tr>
             <th scope="row"><label for="file-path">Image path</label></th>
             <td><input type="text" name="file-path" class="regular-text" value="'.$file_path.'" readonly></td>
-        </tr>
+		</tr>
+		<tr>
+			<th><label>Image preview</label>
+			</th>
+			<td><img src="'.$file_path.'" width="500"></td>		
+		</tr>
 	</table>
-	<label>Image</label>
-    <img src="'.$file_path.'" heigh=640px width="500">
     
 ';
 }
