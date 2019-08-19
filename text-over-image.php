@@ -118,32 +118,33 @@ function wpt_events_location(){
 
     <table class="form-table">
         <tr>
-            <th scope="row"><label for="line-one">Line One</label></th>
+            <th scope="row"><label for="line-one">Line one</label></th>
 			<td>
 				<input type="text" name="line-one" class="regular-text" value="'.$line_one.'">
 				<input type="text" id="line-one-color" name="line-one-color" value="'.$line_one_color.'">
 			</td>
         </tr>
         <tr>
-            <th scope="row"><label for="line-two">Line Two</label></th>
+            <th scope="row"><label for="line-two">Line two</label></th>
 			<td>
 				<input type="text" name="line-two" class="regular-text" value= "'.$line_two.'">
 				<input type="text" id="line-two-color" name="line-two-color" value="'.$line_two_color.'">
 			</td>
         </tr>
         <tr>
-            <th scope="row"><label for="line-three">Line Three</label></th>
+            <th scope="row"><label for="line-three">Line three</label></th>
 			<td>
 				<input type="text" name="line-three" class="regular-text" value="'.$line_three.'">
 				<input type="text" id="line-three-color" name="line-three-color" value="'.$line_three_color.'">
 			</td>
         </tr>
         <tr>
-            <th scope="row"><label for="file-path">File Path</label></th>
+            <th scope="row"><label for="file-path">Image path</label></th>
             <td><input type="text" name="file-path" class="regular-text" value="'.$file_path.'" readonly></td>
         </tr>
-    </table>
-    <img src="'.$file_path.'" heigh=640px width="400">
+	</table>
+	<label>Image</label>
+    <img src="'.$file_path.'" heigh=640px width="500">
     
 ';
 }
